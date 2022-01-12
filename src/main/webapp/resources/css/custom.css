@@ -178,3 +178,55 @@ footer .post p span { display:block; color:#8f8f8f; font-size: 12px;}
 .footet-2 { float:left; width:25%;}
 .footet-3 { float:left; width:25%;}
 .footet-4 { float:left; width:25%;}
+
+.login_text_box {display:block; width:40%; padding: 0.5rem 0.75rem; font-size:1rem; 
+line-height: 1.25; color:#55595c; background-color:#fff; background-image:none; 
+background-clip:padding-box; border:1px solid rgba(0,0,0,.15); border-radius:0.25rem; 
+left:31%; position:relative;
+}
+
+.join_email_check_false { width:25%; padding: 0.5rem 0.75rem; font-size:1rem; 
+line-height: 1.25; color:#55595c; background-color:#ebebe4; background-image:none; 
+background-clip:padding-box; border:1px solid rgba(0,0,0,.15); border-radius:0.25rem; 
+left:31%; position:relative;
+}
+
+.join_email_check_true { width:25%; padding: 0.5rem 0.75rem; font-size:1rem; 
+line-height: 1.25; color:#55595c; background-color:#fff; background-image:none; 
+background-clip:padding-box; border:1px solid rgba(0,0,0,.15); border-radius:0.25rem; 
+left:31%; position:relative;
+}
+
+.memberJoin_text_box {display:block; width:40%; padding: 0.5rem 0.75rem; font-size:1rem; 
+line-height: 1.25; color:#55595c; background-color:#fff; background-image:none; 
+background-clip:padding-box; border:1px solid rgba(0,0,0,.15); border-radius:0.25rem; 
+left:31%; position:relative;
+}
+
+.login_button {width:40%; left:31%; position:relative;	}
+.login_btn {color:#fff; background-color:black; border-color:black;}
+.section_login {padding:120px;}
+
+.p1{padding:59px;}
+.p2{min-height:149px;}
+
+.p_join {margin-top:0; margin-bottom: 1rem; text-align:center; font-size:14px;}
+.label_id_join {display:inline-block; margin-bottom:1rem; padding-top:50px; padding-left:530px;}
+.label_other_join {display:inline-block; margin-bottom:1rem; padding-top:5px; padding-left:530px;}
+
+
+
+#mail_check_input_box_false{
+    background-color:#ebebe4;
+}
+ 
+#mail_check_input_box_true{
+    background-color:white;
+}
+
+.correct{
+    color : green;
+}
+.incorrect{
+    color : red;
+}
