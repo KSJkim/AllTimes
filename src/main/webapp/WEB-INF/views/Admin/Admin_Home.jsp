@@ -43,7 +43,7 @@
  <%@ include file="./includes/Admin_Header.jsp" %>
 <section>
 	<div class="container">
-		<div>
+		<div class="test">
 			
 			<div class="col-sm-4">
 				<div style="border-bottom: solid red 1px;"><span>회원 수</span></div>
