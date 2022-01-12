@@ -75,5 +75,16 @@ public class ArticleController {
 		
 		return mav;
 	}
+	
+	/* 기사 검색 controller */
+	@RequestMapping (value="SearchArticle")
+	public ModelAndView SearchArticle(String ArticleSearch, String SearchType) {
+		System.out.println("검색내용 : " + ArticleSearch);
+		System.out.println("검색타입 : " + SearchType);
+		
+		mav = artSvc.SearchArticle(ArticleSearch, SearchType);
+		
+		return mav;
+	}
 
 }
