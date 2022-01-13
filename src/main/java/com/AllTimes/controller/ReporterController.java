@@ -69,7 +69,13 @@ import com.AllTimes.dto.ReporterDto;
 			return mav;
 		}
 		
+		@RequestMapping(value="ReporterLoginForm")
+		public String ReportLoginForm() {
+			System.out.println("/ReporterLoginForm 로그인 페이지 이동");
 		
+			
+			return "Reporter/ReporterLoginForm";
+		}
 		
 
 }
