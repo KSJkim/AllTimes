@@ -110,7 +110,7 @@
 	
 	<!--footer start from here-->
 
-	<%@ include file="../includes/Footer.jsp" %>
+	<%@ include file="../includes/AnotherFooter.jsp" %>
 
 	<script
 		src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
