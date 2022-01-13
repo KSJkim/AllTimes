@@ -67,6 +67,12 @@ public interface ArticleDao {
 	ArrayList<ArticleDto> selectReporterModify(String test_Rid);
 
 	ReporterDto ReporterModifyForm(String rid);
+	
+	@Select("SELECT * FROM ARTICLE WHERE AR_TITLE LIKE '%'||#{searchText}||'%'")
+	ArrayList<ArticleDto> selectSearchArticleList_TITLE(String articleSearch);
+	
+	@Select("SELECT * FROM ARTICLE WHERE AR_DETAIL LIKE '%'||#{searchText}||'%'")
+	ArrayList<ArticleDto> selectSearchArticleList_DETAIL(String articleSearch);
 
 
 }
