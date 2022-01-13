@@ -5,43 +5,75 @@
         <div class="container">
     <button class="navbar-toggler hidden-lg-up " type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation"> &#9776; </button>
     <div class="collapse navbar-toggleable-md" id="exCollapsingNavbar2"> <a class="navbar-brand" href="#">Responsive navbar</a>
-            <ul class="nav navbar-nav ">
-        <li class="nav-item active"> <a class="nav-link" href="${pageContext.request.contextPath }/">Home <span class="sr-only">(current)</span></a> </li>
-        <li class="nav-item"> <a class="nav-link" href="selectArticleList?ar_genre=COVID">COVID-19</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="selectArticleList?ar_genre=POLITICS">정치</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="selectArticleList?ar_genre=ECONOMY">경제</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="selectArticleList?ar_genre=SOCIETY">사회</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="selectArticleList?ar_genre=CULTURE">문화</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="selectArticleList?ar_genre=SPORT">스포츠</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="selectArticleList?ar_genre=INTERNATIONAL">국제</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="selectArticleList?ar_genre=SCIENCE">IT</a> </li>
-      </ul><!-- href 링크 변경 -->
-              <form action="SearchArticle" method="post" onsubmit="return searchCheck();"  enctype="multipart/form-data" class="pull-xs-right">
-        <div class="search">
-                <input type="text" id="SearchArticle" name="SearchArticle" class="form-control" maxlength="64" placeholder="기사 제목을 입력해주세요">
-                <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-              </div>
-      </form>
+            <ul class="nav navbar-nav " id="Navigation">
+        <li class="nav-item active" onclick="Navigation(this)"> <a class="nav-link" href="${pageContext.request.contextPath }/">Home <span class="sr-only">(current)</span></a> </li>
+        <li class="nav-item" onclick="Navigation(this)"> <a class="nav-link" href="COVID_PAGE">COVID-19</a> </li>
+        <li class="nav-item" onclick="Navigation(this)"> <a class="nav-link" href="POLITICS_PAGE">정치</a> </li>
+        <li class="nav-item" onclick="Navigation(this)"> <a class="nav-link" href="ECONOMY_PAGE">경제</a> </li>
+        <li class="nav-item" onclick="Navigation(this)"> <a class="nav-link" href="SOCIETY_PAGE">사회</a> </li>
+        <li class="nav-item" onclick="Navigation(this)"> <a class="nav-link" href="CULTURE_PAGE">문화</a> </li>
+        <li class="nav-item" onclick="Navigation(this)"> <a class="nav-link" href="SPORTS_PAGE">스포츠</a> </li>
+        <li class="nav-item" onclick="Navigation(this)"> <a class="nav-link" href="INTERNATIONAL_PAGE">국제</a> </li>
+        <li class="nav-item" onclick="Navigation(this)"> <a class="nav-link" href="SCIENCE_PAGE">IT</a> </li>
+      </ul>
       
+      
+        <div class="search" style="width:380px;">
+            <a href="#" class="btn btn-search" data-toggle="modal" data-target="#SearchArticleModal" style="right:-175px; top:6px;">
+            	<i class="fa fa-search" style="color:white"></i>
+            </a>
+        </div>
+        
+        
+         <div class="modal fade" id="SearchArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                
+                <form action="SearchArticle" method="get" class="form-group">
+				<div class="input-group" style="margin-top:15px; margin-bottom:15px;">
+					<select name ="SearchType" style="margin-left:10px;">
+						<option label="제목" value="TITLE"></option>
+						<option label="내용" value="DETAIL"></option>
+					</select>
+					<input type="text" class="input-group-prepend" name="ArticleSearch" id="SearchArticle" name="SearchArticle"
+					style="width:470px; border-top:none; border-left:none; border-right:none;
+							border-bottom-color:#FD3A13; font-size:23px; margin-left:5px;"
+							placeholder="검색어를 입력해주세요">
+					<button type="submit" class="btn btn-search input-group-append" style="right:11px;"><i class="fa fa-search"></i></button>
+				</div>
+				</form>
+                
+                <hr>
+                
+                <div></div>
+                
+                
+            </div>
+        </div>
+    </div>    
       
       
       
           </div>
   </div>
   
+ <script src="${pageContext.request.contextPath }/resources/vendor/jquery/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+  
+  
   	<script type="text/javascript">
   	
-      	function searchCheck(){
-      		
-      		var checkAr_detail = $("SearchArticle").val();
-      		//var search = document.getElementById("SearchArticle").value;
-      		
-      		if(checkAr_detail == ''){
-      			alert("검색어를 입력해주세요");
-      			$("SearchArticle").focus();
-      			return false;
-      		}
-      	}
+  		function Navigation(obj){
+			$("#Navigation li").css("color","black").css("font-weight","bold");
+			$(obj).css("color","#FD3A13").css("font-weight","bold")("border-bottom","2px solid #FD3A13");
+	}  	
+  	
       </script>
       
       </nav>
