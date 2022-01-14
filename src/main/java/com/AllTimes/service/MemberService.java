@@ -169,6 +169,161 @@ public class MemberService {
 		
 		return mav;
 	}
+	
+	public ModelAndView MemberLoginForm() {
+		mav = new ModelAndView();
+		
+		/*footer*/
+		ArrayList<ArticleDto> ArticleHits = articleDao.selectMainArticleHits();
+		ArrayList<ArticleDto> ArticleLatestFooter = articleDao.selectArticleLatestFooter();
+		mav.addObject("ArticleHits", ArticleHits);
+		mav.addObject("ArticleLatestFooter", ArticleLatestFooter);
+		
+		mav.setViewName("member/MemberLoginForm");
+		
+		return mav;
+	}
+
+
+	public ModelAndView MemberJoinForm() {
+		mav = new ModelAndView();
+		
+		/*footer*/
+		ArrayList<ArticleDto> ArticleHits = articleDao.selectMainArticleHits();
+		ArrayList<ArticleDto> ArticleLatestFooter = articleDao.selectArticleLatestFooter();
+		mav.addObject("ArticleHits", ArticleHits);
+		mav.addObject("ArticleLatestFooter", ArticleLatestFooter);
+		
+		mav.setViewName("member/MemberJoinForm");
+		
+		return mav;
+	}
+
+
+	public ModelAndView MemberInfo() {
+		mav = new ModelAndView();
+		
+		/*footer*/
+		ArrayList<ArticleDto> ArticleHits = articleDao.selectMainArticleHits();
+		ArrayList<ArticleDto> ArticleLatestFooter = articleDao.selectArticleLatestFooter();
+		mav.addObject("ArticleHits", ArticleHits);
+		mav.addObject("ArticleLatestFooter", ArticleLatestFooter);
+		
+		mav.setViewName("member/MemberInfo");
+		
+		return mav;
+	}
+
+	/* 회원가입 */
+	public ModelAndView registMember(MemberDto member) {
+		
+		mav = new ModelAndView();
+		
+		int insertResult = mdao.insertMember(member);
+		System.out.println("회원가입 결과 : " + insertResult);
+		
+		if(insertResult > 0) {
+			System.out.println("회원가입 성공");
+			mav.setViewName("redirect:/");
+		} else {
+			System.out.println("회원가입 실패");
+		}
+		
+		return mav;
+	}
+
+
+	public String checkMemberId(String userInputId) {
+		System.out.println("MemberService.checkMemberId()");
+		
+		String mid = mdao.checkMemberId(userInputId);
+		System.out.println("중복확인 : " + mid);
+		
+		String checkResult = "NO";
+		
+		if(mid == null) {
+			checkResult = "OK";
+		}
+		
+		return checkResult;
+	}
+
+	/* 아이디찾기 페이지이동 */
+	public ModelAndView MemberIDSearch() {
+		
+		
+		mav = new ModelAndView();
+		
+		mav.setViewName("member/MemberIDSearch");
+		
+		return mav;
+	}
+	
+	/* 비밀번호찾기 페이지이동 */
+	public ModelAndView MemberPWSearch() {
+		
+		
+		mav = new ModelAndView();
+		
+		mav.setViewName("member/MemberPWSearch");
+		
+		return mav;
+	}
+
+
+	public ModelAndView IdSearch(String mmail) {
+		
+		mav = new ModelAndView();
+		
+		
+		MemberDto IdSearch = mdao.selectIdSearch(mmail);
+		
+		System.out.println(IdSearch);
+		
+		if(IdSearch != null) {
+			System.out.println("인증 성공");
+			
+			mav.setViewName("member/MemberID");
+			
+			
+		}else {
+			System.out.println("인증 실패");
+			
+			
+			mav.setViewName("member/MemberIDSearch");
+		}
+		
+		
+		mav.addObject("IdSearch", IdSearch);
+		return mav;
+	}
+
+
+	public ModelAndView PwSearch(String mid, String mcontact) {
+		mav = new ModelAndView();
+		
+		
+		MemberDto PwSearch = mdao.selectPwSearch(mid,mcontact);
+		
+		System.out.println(PwSearch);
+		
+		if(PwSearch != null) {
+			System.out.println("인증 성공");
+			
+			mav.setViewName("member/MemberPW");
+			
+			
+		}else {
+			System.out.println("인증 실패");
+			
+			
+			mav.setViewName("member/MemberPWSearch");
+		}
+		
+		
+		mav.addObject("PwSearch", PwSearch);
+		return mav;
+	}
 
 
 	
