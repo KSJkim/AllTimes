@@ -51,7 +51,7 @@
     <div class="row">
             <div class="col-lg-12 ">
             <!-- 기사 제목으로 검색 -->
-        <h3 class="heading-large"> 검색한내용 : </h3>
+        <h3 class="heading-large"> 검색한내용 : ${param.ArticleSearch } </h3>
         <div class="row">
        	<c:forEach items="${SearchArt }" var="search">
                 <div class="col-lg-12">
