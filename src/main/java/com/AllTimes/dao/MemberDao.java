@@ -16,6 +16,18 @@ public interface MemberDao {
 	MemberDto selectMemberModifyForm(String mid);
 	
 	int updateMember(MemberDto member);
+	
+	int insertMember(MemberDto member);
+	
+	@Select("SELECT MID FROM MEMBER WHERE MID = #{userInputId}")
+	String checkMemberId(String userInputId);
+
+	MemberDto selectIdSearch(String mmail);
+	
+	@Select("SELECT MID FROM MEMBER WHERE MMAIL = #{userInputMail}")
+	String checkMemberMail(String userInputMail);
+
+	MemberDto selectPwSearch(@Param("mid")String mid, @Param("mcontact")String mcontact);
 
 
 }
