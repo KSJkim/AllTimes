@@ -23,5 +23,18 @@
   		SET MPW = #{mpw}, MNAME = #{mname}, MMAIL = #{mmail}, MAGE = #{mage}, MCONTACT = #{mcontact}
   		WHERE MID = #{mid}
   	</update>
+	  
+	 <insert id="insertMember">
+  		INSERT INTO MEMBER(MID, MPW, MNAME, MMAIL, MCONTACT)
+  		VALUES(#{mid}, #{mpw}, #{mname}, #{mmail}, #{mcontact})
+   	 </insert>
+    
+   	 <select id="selectIdSearch" resultType="com.AllTimes.dto.MemberDto">
+		SELECT MID FROM MEMBER WHERE MMAIL = #{mmail}
+	</select>
+	
+	<select id="selectPwSearch" resultType="com.AllTimes.dto.MemberDto">
+		SELECT MPW FROM MEMBER WHERE MID = #{mid} AND MCONTACT = #{mcontact}
+	</select>
   
   </mapper>
