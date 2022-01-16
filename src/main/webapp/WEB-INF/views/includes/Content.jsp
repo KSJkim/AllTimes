@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 	
 	
-
+	
 	
 	<!-- 전체 기사중 조회수 가장 높은 기사 5개 -->
 	<div class="sub-footer">
@@ -44,33 +44,33 @@
       </div>
             <!-- End Carousel Inner -->
            
-            <ul class="list-group col-sm-4">
+            <ul class="list-group col-sm-4 " id="HitsArticle">
 		<c:forEach items="${ArticleHits }" var="hits" varStatus="st">
 		<c:choose>
             	<c:when test="${st.index == 0 }">			 
-        <li data-target="#myCarousel" data-slide-to="0" class="list-group-item active">
+        <li data-target="#myCarousel" data-slide-to="0" class="list-group-item active" id="HitsArticle" onclick="HitsArticle(this)" >
                 <h4>${hits.ar_title }</h4>
               </li>
              	</c:when>
              	<c:otherwise>
              	<c:choose>
              	<c:when test="${st.index == 1 }">
-        <li data-target="#myCarousel" data-slide-to="1" class="list-group-item">
+        <li data-target="#myCarousel" data-slide-to="1" class="list-group-item" id="HitsArticle" onclick="HitsArticle(this)">
                 <h4>${hits.ar_title }</h4>
 		</li>
 				</c:when>
 				<c:when test="${st.index == 2 }">
-        <li data-target="#myCarousel" data-slide-to="2" class="list-group-item">
+        <li data-target="#myCarousel" data-slide-to="2" class="list-group-item" id="HitsArticle" onclick="HitsArticle(this)">
                 <h4>${hits.ar_title }</h4>
 		</li>
 				</c:when>
 				<c:when test="${st.index == 3 }">
-        <li data-target="#myCarousel" data-slide-to="3" class="list-group-item">
+        <li data-target="#myCarousel" data-slide-to="3" class="list-group-item"id="HitsArticle"  onclick="HitsArticle(this)">
                 <h4>${hits.ar_title }</h4>
 		</li>
 				</c:when>
 				<c:when test="${st.index == 4 }">
-        <li data-target="#myCarousel" data-slide-to="4" class="list-group-item">
+        <li data-target="#myCarousel" data-slide-to="4" class="list-group-item" id="HitsArticle" onclick="HitsArticle(this)">
                 <h4>${hits.ar_title }</h4>
 		</li>
 				</c:when>
@@ -230,7 +230,7 @@
   </div>
       </section>
       
-      <!-- 연령별 추천 뉴스 -->
+      <!-- 크롤링 헤드라인 뉴스 -->
 <section class="section-01">
         <div class="container">
     <div class="row">
@@ -248,8 +248,8 @@
                   	<strong>
                   		(중앙일보)
                   		<c:choose>
-                      		<c:when test="${fn:length(Jarticle.cr_title) gt 21}">
-                      			<c:out value="${fn:substring(Jarticle.cr_title, 0, 20)}"></c:out>...
+                      		<c:when test="${fn:length(Jarticle.cr_title) gt 20}">
+                      			<c:out value="${fn:substring(Jarticle.cr_title, 0, 19)}"></c:out>...
                 	  		</c:when>
                 	  		<c:otherwise>
                 	  			<a href="${Jarticle.cr_url }" style="color:black;" target="_blank">
@@ -551,6 +551,13 @@
 	
 </script>
 	
+<script type="text/javascript">
 
+	function HitsArticle(obj){
+		$("#HitsArticle li").css("background-color","white").css("color","black").css("font-weight","normal").css("border","1px solid lightgray");
+		$(obj).css("background-color","black").css("color","white").css("font-weight","bold");
+	}
+	
+</script>
 
 
