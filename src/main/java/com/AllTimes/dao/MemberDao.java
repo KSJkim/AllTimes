@@ -27,7 +27,7 @@ public interface MemberDao {
 	@Select("SELECT MID FROM MEMBER WHERE MMAIL = #{userInputMail}")
 	String checkMemberMail(String userInputMail);
 
-	MemberDto selectPwSearch(@Param("mid")String mid, @Param("mcontact")String mcontact);
+	MemberDto selectPwSearch(@Param("mid")String mid, @Param("mmail")String mmail);
 
 
 }
