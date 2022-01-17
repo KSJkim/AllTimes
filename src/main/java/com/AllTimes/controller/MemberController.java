@@ -178,6 +178,90 @@ public class MemberController {
         return num;
     }
     
+	/* 아이디찾기 이메일 인증 */
+    @RequestMapping(value="/mailIDCheck", method=RequestMethod.GET)
+    @ResponseBody
+    public String mailIDCheckGET(String email) throws Exception{
+        
+        System.out.println("이메일 인증번호 :  " + email);
+        
+        /* 인증번호(난수) 생성 */
+        Random random = new Random();
+        int checkNum = random.nextInt(888888) + 111111;
+        System.out.println("인증번호 : " + checkNum);
+        
+        /* 이메일 보내기 */
+        String setFrom = "daehokok@gmail.com";
+        String toMail = email;
+        String title = "ALL TIMES 아이디 찾기 이메일 입니다.";
+        String content = 
+                "저희 ALL TIMES 신문사 페이지를 방문해주셔서 감사합니다." +
+                "<br><br>" + 
+                "인증 번호는 " + checkNum + "입니다." + 
+                "<br><br>" + 
+                "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+        
+        try {
+            
+            MimeMessage message = mailSender2.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+            helper.setFrom(setFrom);
+            helper.setTo(toMail);
+            helper.setSubject(title);
+            helper.setText(content,true);
+            mailSender2.send(message);
+            
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        
+        String num = Integer.toString(checkNum);
+        
+        return num;
+    }
+    
+    /* 비밀번호찾기 이메일 인증 */
+    @RequestMapping(value="/mailPWCheck", method=RequestMethod.GET)
+    @ResponseBody
+    public String mailPWCheckGET(String email) throws Exception{
+        
+        System.out.println("이메일 인증번호 :  " + email);
+        
+        /* 인증번호(난수) 생성 */
+        Random random = new Random();
+        int checkNum = random.nextInt(888888) + 111111;
+        System.out.println("인증번호 : " + checkNum);
+        
+        /* 이메일 보내기 */
+        String setFrom = "daehokok@gmail.com";
+        String toMail = email;
+        String title = "ALL TIMES 비밀번호 찾기 이메일 입니다.";
+        String content = 
+                "저희 ALL TIMES 신문사 페이지를 방문해주셔서 감사합니다." +
+                "<br><br>" + 
+                "인증 번호는 " + checkNum + "입니다." + 
+                "<br><br>" + 
+                "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+        
+        try {
+            
+            MimeMessage message = mailSender2.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+            helper.setFrom(setFrom);
+            helper.setTo(toMail);
+            helper.setSubject(title);
+            helper.setText(content,true);
+            mailSender2.send(message);
+            
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        
+        String num = Integer.toString(checkNum);
+        
+        return num;
+    }
+	
     
     /* 카카오 로그인 */
     @RequestMapping(value ="/MemberKakaoLogin")
@@ -247,11 +331,11 @@ public class MemberController {
     
     /* 비밀번호찾기 */
     @RequestMapping(value="/PwSearch")
-    public ModelAndView PwSearch(String mid, String mcontact) {
+    public ModelAndView PwSearch(String mid, String mmail) {
     	System.out.println("입력한 아이디 :" + mid);
-    	System.out.println("입력한 전화번호 :" + mcontact);
+    	System.out.println("입력한 메일 :" + mmail);
     	
-    	mav = memSvc.PwSearch(mid,mcontact);
+    	mav = memSvc.PwSearch(mid,mmail);
     	
     	return mav;
     }
