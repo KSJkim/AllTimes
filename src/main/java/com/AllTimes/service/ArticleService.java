@@ -47,6 +47,11 @@ public class ArticleService {
 			case "SCIENCE" : mav.setViewName("article/SCIENCE_PAGE");break;
 			case "COVID" : mav.setViewName("article/COVIE_PAGE");break;
 		}
+		
+		ArrayList<ArticleDto> ArticleHits = artDao.selectMainArticleHits();
+		ArrayList<ArticleDto> ArticleLatestFooter = artDao.selectArticleLatestFooter();
+		mav.addObject("ArticleHits", ArticleHits);
+		mav.addObject("ArticleLatestFooter", ArticleLatestFooter);
 		return mav;
 		
 	}
@@ -80,6 +85,11 @@ public class ArticleService {
 			case "SCIENCE" : mav.setViewName("article/SCIENCE_ARTICLE");break;
 			case "COVID" : mav.setViewName("article/COVIE_ARTICLE");break;
 		}
+		
+		ArrayList<ArticleDto> ArticleHits = artDao.selectMainArticleHits();
+		ArrayList<ArticleDto> ArticleLatestFooter = artDao.selectArticleLatestFooter();
+		mav.addObject("ArticleHits", ArticleHits);
+		mav.addObject("ArticleLatestFooter", ArticleLatestFooter);
 		return mav;
 	}
 
