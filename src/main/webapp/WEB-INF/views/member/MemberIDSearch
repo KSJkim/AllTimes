@@ -46,13 +46,21 @@
                                 </div>
 
                                 	 <form action="IdSearch" method="post" onsubmit="return IdSearch();" class="user">
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-bottom:0rem">
                                         <input type="email" name="mmail"  class="login_text_box"
                                             id="inputMmail" aria-describedby="emailHelp"
                                             placeholder="이메일을 입력하세요..." style="border-radius: 10px; margin-top:30px;">
                                         <span id="mailCheckMsg" style="font-size: 15px; padding-left:350px; font-weight:bold;"></span>
                                     </div>
-  
+  									
+  									 <div class="form-group" class="mail_check_input_box" style="margin-bottom:2rem" >
+                                        <input type="text"   class="join_email_check_false"
+                                            id="mail_check_input" disabled="disabled" style="border-radius: 10px; ">
+                                        <button type="button" class="mail_check_button" style="position:absolute; float:right; right:360px; 
+                                        	 border-radius:5px; border-color:lightgray; background-color:white; margin-top:3px; ">인증번호 전송</button>
+                                        <span id="mail_check_input_box_warn" style="position:absolute; margin-top:45px; left:360px;"></span>
+                                    </div>
+  									
                        
                                     <input type="submit" class="btn login_btn login_button" value="확인" style="border-radius: 10px; margin-top:10px;">
                                     
@@ -94,56 +102,51 @@
 <script src="${pageContext.request.contextPath }/resources/vendor/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
+
 <script type="text/javascript">
 
-/*
-	var checkMail = false;
-	
+var code = "";  
+/* 인증번호 이메일 전송 */
+$(".mail_check_button").click(function(){
+    
+    var email = $("#inputMmail").val();        	 // 입력한 이메일
+    var checkBox = $("#mail_check_input");       // 인증번호 입력란
+    var boxWrap = $(".mail_check_input_box");    // 인증번호 입력란 박스
+    
+	$.ajax({
+        type:"GET",
+        url:"mailIDCheck?email=" + email,
+        success:function(data){
+        	
+        	checkBox.attr("disabled",false);
+        	boxWrap.attr("class", "join_email_check_false_true");
+        	code = data;
+        }
+                
+    });
+    
+});
+/* 인증번호 비교 */
+$("#mail_check_input").blur(function(){
+    var inputCode = $("#mail_check_input").val();        // 입력코드    
+    var checkResult = $("#mail_check_input_box_warn");    // 비교 결과  
+    
+    if(inputCode == code){                            // 일치할 경우
+        checkResult.html("인증번호가 일치합니다.");
+        checkResult.attr("class", "correct");        
+    } else {                                            // 일치하지 않을 경우
+        checkResult.html("인증번호를 다시 확인해주세요.");
+        checkResult.attr("class", "incorrect");
 
-		$(document).ready(function(){
-		
-		$("#inputMmail").keyup( function (){ 
-			var userInputMail = $("#inputMmail").val();
-			console.log("입력한 메일 : " + userInputMail);
-			
-			if(userInputMail.length <= 0){
-				//alert("메일을 입력해주세요");
-				checkMail = false;
-				
-			} else {
-				$.ajax({ 
-					type : "get",
-					url : "MemberMailCheck",
-					data : { "userInputMail" : userInputMail },
-					success : function(result){  
-						console.log("result : " + result);
-						if(result == "OK"){
-							alert("메일 인증에 성공하였습니다.");
-							checkMail = true;
-						} else {
-							
-							checkMail = false;
-							alert("가입시 입력했던 메일을 입력해주세요");
-						}
-					},
-					error : function(){
-						alert("ajax 연결 실패!");
-					}
-				});
-			}
-			
-			
-			
-		});
-		
-		
-	});
-		*/		
+    }    
+    
+});
+
 </script>
 
 
 <script type="text/javascript">
-/*
+
 function IdSearch(){
 	
 	var checkMmail = $("#inputMmail").val();
@@ -156,9 +159,27 @@ function IdSearch(){
 	
 	}
 	
+	var quoteMmail = $("#mail_check_input").val();
+	
+	if(quoteMmail == ""){
+		console.log("인증번호를 입력해주세요.");
+		alert("인증번호를 입력해주세요.");
+		$("mail_check_input").focus();
+		return false;
+	
+	}
+	
+	if($("#mail_check_input_box_warn").hasClass("incorrect")){
+		console.log("인증에 실패하였습니다.");
+		alert("인증에 실패하였습니다. 인증번호를 다시 입력해주세요");
+		$("#mail_check_input").focus();
+		return false;
+		
+	}
+	
 
 }
-*/
+
 </script>
 
 
