@@ -299,11 +299,11 @@ public class MemberService {
 	}
 
 
-	public ModelAndView PwSearch(String mid, String mcontact) {
+	public ModelAndView PwSearch(String mid, String mmail) {
 		mav = new ModelAndView();
 		
 		
-		MemberDto PwSearch = mdao.selectPwSearch(mid,mcontact);
+		MemberDto PwSearch = mdao.selectPwSearch(mid,mmail);
 		
 		System.out.println(PwSearch);
 		
