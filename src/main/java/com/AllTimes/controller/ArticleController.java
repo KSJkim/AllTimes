@@ -26,7 +26,7 @@ public class ArticleController {
 	private ArticleService artSvc;
 	
 	@RequestMapping(value="/selectArticleList")
-	public ModelAndView articleList(String ar_genre) {
+	public ModelAndView articleList(String ar_genre, String category) {
 		System.out.println("/articleList : move to article List");
 		System.out.println("ar_genre : "+ar_genre);
 		mav = artSvc.selectArticleList(ar_genre);
