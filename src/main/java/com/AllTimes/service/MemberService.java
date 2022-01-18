@@ -35,7 +35,7 @@ public class MemberService {
 //	private String savePath = "";
 
 	
-	/* 회원 로그인 */
+		/* 회원 로그인 */
 	public ModelAndView MemberLogin(String mid, String mpw) {
 		
 		mav = new ModelAndView();
@@ -49,24 +49,11 @@ public class MemberService {
 			//세션에 로그인 정보 저장
 			session.setAttribute("loginMid", MemberLogin.getMid());
 			session.setAttribute("loginMname", MemberLogin.getMname());
-			
-			/*footer*/
-			ArrayList<ArticleDto> ArticleHits = articleDao.selectMainArticleHits();
-			ArrayList<ArticleDto> ArticleLatestFooter = articleDao.selectArticleLatestFooter();
-			mav.addObject("ArticleHits", ArticleHits);
-			mav.addObject("ArticleLatestFooter", ArticleLatestFooter);
-			
 			mav.setViewName("redirect:/");
+			
 		} else {
 			// 로그인 실패
 			System.out.println("로그인실패");
-			
-			/*footer*/
-			ArrayList<ArticleDto> ArticleHits = articleDao.selectMainArticleHits();
-			ArrayList<ArticleDto> ArticleLatestFooter = articleDao.selectArticleLatestFooter();
-			mav.addObject("ArticleHits", ArticleHits);
-			mav.addObject("ArticleLatestFooter", ArticleLatestFooter);
-			
 			mav.setViewName("redirect:/MemberLoginForm");
 		}
 		
@@ -89,25 +76,13 @@ public class MemberService {
 			session.setAttribute("loginRid", ReporterLogin.getRid());
 			session.setAttribute("loginRname", ReporterLogin.getRname());
 			session.setAttribute("loginRprofile", ReporterLogin.getRprofile());
-			
-			/*footer*/
-			ArrayList<ArticleDto> ArticleHits = articleDao.selectMainArticleHits();
-			ArrayList<ArticleDto> ArticleLatestFooter = articleDao.selectArticleLatestFooter();
-			mav.addObject("ArticleHits", ArticleHits);
-			mav.addObject("ArticleLatestFooter", ArticleLatestFooter);
-			
 			mav.setViewName("redirect:/");
+			
 		} else {
+			
 			// 로그인 실패
 			System.out.println("로그인실패");
-			
-			/*footer*/
-			ArrayList<ArticleDto> ArticleHits = articleDao.selectMainArticleHits();
-			ArrayList<ArticleDto> ArticleLatestFooter = articleDao.selectArticleLatestFooter();
-			mav.addObject("ArticleHits", ArticleHits);
-			mav.addObject("ArticleLatestFooter", ArticleLatestFooter);
-			
-			mav.setViewName("redirect:/MemberLoginForm");
+			mav.setViewName("redirect:/ReporterLoginForm");
 		}
 		
 		return mav;
