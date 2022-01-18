@@ -34,7 +34,7 @@
 	</select>
 	
 	<select id="selectPwSearch" resultType="com.AllTimes.dto.MemberDto">
-		SELECT MPW FROM MEMBER WHERE MID = #{mid} AND MCONTACT = #{mcontact}
+		SELECT MPW FROM MEMBER WHERE MID = #{mid} AND MMAIL = #{mmail}
 	</select>
   
   </mapper>
